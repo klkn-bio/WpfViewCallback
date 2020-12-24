@@ -1,0 +1,30 @@
+﻿<Window x:Class="WpfViewCallback.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfViewCallback"
+        xmlns:viewCommands="clr-namespace:WpfViewCallback.ViewCommands"
+        mc:Ignorable="d"
+        Height="450" Width="800">
+    <viewCommands:ViewCommand.Commands>
+        <viewCommands:ViewCommand>
+            <viewCommands:ViewCommandBinding EventName="Close" ViewMethod="Close"/>
+            <viewCommands:ViewCommandBinding EventName="ActionWithoutParameters" ViewMethod="ActionWithoutParameters"/>
+            <viewCommands:ViewCommandBinding EventName="ActionWithParameters" ViewMethod="ActionWithParameters"/>
+            <viewCommands:ViewCommandBinding EventName="FunctionWithoutParameters" ViewMethod="FunctionWithoutParameters"/>
+            <viewCommands:ViewCommandBinding EventName="FunctionWithParameters" ViewMethod="FunctionWithParameters"/>
+        </viewCommands:ViewCommand>
+    </viewCommands:ViewCommand.Commands>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button Command="{Binding ExecuteCommand}">Execute</Button>
+            <Button Command="{Binding CloseCommand}">Close</Button>
+        </StackPanel>
+        <TextBlock Grid.Row="1" Text="{Binding Log}"></TextBlock>
+    </Grid>
+</Window>
